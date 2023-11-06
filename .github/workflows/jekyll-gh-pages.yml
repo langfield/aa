@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Make index.md
-        run: find . -name '*.md' -not -path '*/.*' -printf "%d %p\n" | sort -n | sed 's/^[0-9]\+\s//g' | xargs -I{} bash -c 'cat {} | sed "s/^#/###/g" && echo ""' > index.md
+        run: find . -name '*.md' -not -path '*/.*' -printf "%d %p\n" | sort -n | sed 's/^[0-9]\+\s//g' | xargs -I{} bash -c 'cat {} | sed "s/^# Note/# {}" | sed "s/^#/###/g" && echo "---"' > index.md
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
